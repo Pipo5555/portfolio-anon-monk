@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พระปลัดอานนท์ อติภทฺโท</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --ivory: #FFF8EE;
+    --white: #FFFFFF;
+    --mint: #BEE7D3;
+    --mint-dark: #6abf9a;
+    --saffron: #F6D78B;
+    --sky: #B8DDF2;
+    --lavender: #D9CDF7;
+    --coral: #F2B7A7;
+    --ink: #253041;
+    --muted: #6E7787;
+    --accent: var(--mint);
+    --accent-dark: var(--mint-dark);
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --shadow-card: 0 2px 16px rgba(37,48,65,0.07);
+    --transition: 0.22s cubic-bezier(.4,0,.2,1);
+  }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: 'Anuphan', sans-serif;
+    background: var(--ivory);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,248,238,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(190,231,211,0.4);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 60px;
+  }
+  .nav-brand {
+    font-size: 15px; font-weight: 600; color: var(--ink);
+    text-decoration: none; letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 0.25rem; }
+  .nav-links a {
+    font-size: 14px; color: var(--muted); text-decoration: none;
+    padding: 6px 14px; border-radius: 20px;
+    transition: background var(--transition), color var(--transition);
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--mint); color: var(--ink);
+  }
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    width: 22px; height: 2px; background: var(--ink); border-radius: 2px;
+    transition: var(--transition);
+  }
+  .mobile-menu {
+    display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 99;
+    background: var(--ivory); border-bottom: 1px solid rgba(190,231,211,0.4);
+    flex-direction: column; padding: 1rem 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 15px; color: var(--ink); text-decoration: none;
+    padding: 12px 0; border-bottom: 1px solid rgba(190,231,211,0.3);
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  /* ===== SECTIONS ===== */
+  section { display: none; }
+  section.active { display: block; }
+  
+  .section-wrap {
+    max-width: 1100px; margin: 0 auto;
+    padding: 100px 2rem 4rem;
+  }
+
+  /* ===== HERO / HOME ===== */
+  #home { background: var(--ivory); }
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    min-height: calc(100vh - 60px); padding: 80px 2rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .hero-left {}
+  .hero-badge {
+    display: inline-block; font-size: 12px; font-weight: 500;
+    background: var(--mint); color: var(--ink); padding: 5px 14px;
+    border-radius: 20px; margin-bottom: 1.25rem; letter-spacing: 0.05em;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.25;
+    color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .hero-pali {
+    font-size: 1.1rem; color: var(--muted); margin-bottom: 1.5rem;
+    font-weight: 300; letter-spacing: 0.04em;
+  }
+  .hero-positions { list-style: none; margin-bottom: 2rem; }
+  .hero-positions li {
+    font-size: 14px; color: var(--muted); padding: 5px 0;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .hero-positions li::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mint-dark); margin-top: 8px; flex-shrink: 0;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Anuphan', sans-serif; font-size: 14px; font-weight: 500;
+    padding: 11px 24px; border-radius: 30px; cursor: pointer;
+    text-decoration: none; transition: var(--transition); border: 1.5px solid transparent;
+  }
+  .btn-primary {
+    background: var(--ink); color: white; border-color: var(--ink);
+  }
+  .btn-primary:hover { background: #1a2330; }
+  .btn-outline {
+    background: transparent; color: var(--ink); border-color: var(--ink);
+  }
+  .btn-outline:hover { background: var(--ink); color: white; }
+  
+  /* Stats bar */
+  .hero-stats {
+    display: flex; gap: 0; margin-top: 2.5rem;
+    background: white; border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card); overflow: hidden;
+  }
+  .stat-item {
+    flex: 1; padding: 1.1rem 1.25rem; text-align: center;
+    border-right: 1px solid rgba(190,231,211,0.5);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 1.5rem; font-weight: 600; color: var(--ink); }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* Avatar */
+  .hero-right { display: flex; justify-content: center; align-items: center; }
+  .avatar-wrap { position: relative; }
+  .avatar-ring {
+    width: 320px; height: 320px; border-radius: 50%;
+    border: 3px solid var(--mint); padding: 6px;
+    background: white;
+  }
+  .avatar-img {
+    width: 100%; height: 100%; border-radius: 50%;
+    object-fit: cover; background: linear-gradient(135deg, var(--mint) 0%, var(--saffron) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; cursor: pointer; overflow: hidden;
+    position: relative;
+  }
+  .avatar-img input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .avatar-emoji { font-size: 6rem; pointer-events: none; }
+  .avatar-upload-hint {
+    position: absolute; bottom: 16px; right: 16px;
+    background: var(--ink); color: white; font-size: 12px;
+    padding: 6px 12px; border-radius: 20px; cursor: pointer;
+  }
+  .avatar-float {
+    position: absolute; background: white; border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card); padding: 12px 16px; font-size: 13px;
+    min-width: 160px;
+  }
+  .float-1 { top: 20px; right: -60px; }
+  .float-2 { bottom: 40px; left: -70px; }
+  .float-label { font-size: 11px; color: var(--muted); }
+  .float-val { font-weight: 600; color: var(--ink); font-size: 14px; }
+
+  /* Highlight cards */
+  .highlights {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
+    max-width: 1100px; margin: 0 auto; padding: 0 2rem 4rem;
+  }
+  .hl-card {
+    background: white; border-radius: var(--radius-lg);
+    padding: 1.5rem; box-shadow: var(--shadow-card);
+    border-top: 4px solid var(--mint);
+  }
+  .hl-card.saffron { border-top-color: var(--saffron); }
+  .hl-card.sky { border-top-color: var(--sky); }
+  .hl-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .hl-title { font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hl-content { font-size: 14px; color: var(--ink); line-height: 1.6; }
+
+  /* ===== PROFILE ===== */
+  .profile-grid { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; }
+  .profile-card {
+    background: white; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 2rem; text-align: center;
+    height: fit-content; position: sticky; top: 80px;
+  }
+  .profile-avatar {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--mint), var(--saffron));
+    margin: 0 auto 1rem; display: flex; align-items: center;
+    justify-content: center; font-size: 3rem; border: 3px solid var(--mint);
+  }
+  .profile-name { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+  .profile-pali { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; }
+  .profile-contact { list-style: none; text-align: left; margin-top: 1.25rem; }
+  .profile-contact li {
+    padding: 8px 0; border-bottom: 1px solid rgba(190,231,211,0.3);
+    font-size: 13px; display: flex; align-items: center; gap: 10px; color: var(--muted);
+  }
+  .profile-contact li span { color: var(--ink); }
+  .contact-icon { font-size: 16px; }
+  
+  .profile-sections { display: flex; flex-direction: column; gap: 1.5rem; }
+  .info-card {
+    background: white; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 1.75rem;
+  }
+  .info-card h3 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem; border-bottom: 2px solid var(--mint);
+  }
+  .info-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 8px 0; border-bottom: 1px solid rgba(190,231,211,0.25); font-size: 14px;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-key { color: var(--muted); flex-shrink: 0; width: 160px; }
+  .info-val { color: var(--ink); text-align: right; }
+  .badge-pill {
+    display: inline-block; font-size: 12px; padding: 3px 10px;
+    border-radius: 20px; background: var(--mint); color: var(--ink);
+    font-weight: 500;
+  }
+  .motto-box {
+    background: var(--ivory); border-left: 4px solid var(--saffron);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 1rem 1.25rem; font-size: 15px; color: var(--ink);
+    font-style: italic; line-height: 1.8;
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section-head { margin-bottom: 2.5rem; }
+  .section-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mint-dark); margin-bottom: 6px;
+  }
+  .section-head h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; }
+  .section-head p { font-size: 15px; color: var(--muted); margin-top: 6px; }
+
+  /* ===== EDUCATION ===== */
+  .edu-timeline { position: relative; padding-left: 32px; }
+  .edu-timeline::before {
+    content: ""; position: absolute; left: 9px; top: 8px; bottom: 8px;
+    width: 2px; background: var(--mint);
+  }
+  .edu-item { position: relative; margin-bottom: 1.75rem; }
+  .edu-dot {
+    position: absolute; left: -32px; top: 6px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--mint); border: 3px solid var(--ivory);
+    box-shadow: 0 0 0 2px var(--mint-dark);
+  }
+  .edu-year { font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+  .edu-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .edu-sub { font-size: 13px; color: var(--muted); }
+  
+  .training-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .training-item {
+    background: white; border-radius: var(--radius-md); padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-card); border-left: 4px solid var(--lavender);
+    font-size: 14px;
+  }
+
+  /* ===== EXPERIENCE ===== */
+  .exp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1rem; }
+  .exp-card {
+    background: white; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .exp-icon { font-size: 1.75rem; }
+  .exp-title { font-size: 15px; font-weight: 600; }
+  .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .exp-tag {
+    display: inline-block; font-size: 11px; padding: 3px 10px;
+    border-radius: 20px; background: var(--sky); color: var(--ink); width: fit-content;
+  }
+
+  /* ===== UK MISSION ===== */
+  .uk-hero {
+    background: var(--ink); border-radius: var(--radius-lg);
+    padding: 3rem; color: white; margin-bottom: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .uk-hero::before {
+    content: "🇬🇧"; position: absolute; right: 2rem; top: 50%;
+    transform: translateY(-50%); font-size: 8rem; opacity: 0.15;
+  }
+  .uk-hero h2 { font-size: 1.75rem; font-weight: 600; margin-bottom: 8px; }
+  .uk-hero p { color: rgba(255,255,255,0.7); font-size: 15px; }
+  .uk-details { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; }
+  .uk-detail-card {
+    background: white; border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card); padding: 1.25rem;
+  }
+  .uk-detail-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .uk-detail-val { font-size: 15px; font-weight: 600; color: var(--ink); }
+
+  /* ===== GALLERY ===== */
+  .gallery-toolbar {
+    display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: 'Anuphan', sans-serif; font-size: 13px;
+    padding: 7px 18px; border-radius: 20px;
+    border: 1.5px solid rgba(37,48,65,0.15);
+    background: white; color: var(--muted); cursor: pointer;
+    transition: var(--transition);
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--ink); color: white; border-color: var(--ink);
+  }
+  .upload-zone {
+    border: 2px dashed rgba(190,231,211,0.8); border-radius: var(--radius-lg);
+    padding: 2.5rem; text-align: center; margin-bottom: 2rem;
+    background: white; cursor: pointer; transition: var(--transition);
+    position: relative;
+  }
+  .upload-zone:hover { border-color: var(--mint-dark); background: rgba(190,231,211,0.05); }
+  .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .upload-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .upload-text { font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+  .upload-sub { font-size: 13px; color: var(--muted); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1rem; }
+  .gallery-item {
+    border-radius: var(--radius-md); overflow: hidden;
+    background: white; box-shadow: var(--shadow-card);
+  }
+  .gallery-thumb {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    background: linear-gradient(135deg, var(--mint) 0%, var(--sky) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+  }
+  .gallery-info { padding: 0.75rem; }
+  .gallery-name { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+  .gallery-cat { font-size: 11px; color: var(--muted); }
+  .gallery-empty { text-align: center; padding: 3rem; color: var(--muted); font-size: 15px; }
+
+  /* ===== CONTACT ===== */
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-info-list { list-style: none; margin-bottom: 2rem; }
+  .contact-info-list li {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid rgba(190,231,211,0.3); font-size: 15px;
+  }
+  .ci-icon {
+    width: 42px; height: 42px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+  }
+  .ci-icon.mint { background: var(--mint); }
+  .ci-icon.saffron { background: var(--saffron); }
+  .ci-icon.sky { background: var(--sky); }
+  .ci-label { font-size: 12px; color: var(--muted); }
+  .ci-val { font-weight: 500; color: var(--ink); }
+  .form-card {
+    background: white; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 2rem;
+  }
+  .form-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 11px 14px; border: 1.5px solid rgba(37,48,65,0.15);
+    border-radius: var(--radius-sm); font-family: 'Anuphan', sans-serif;
+    font-size: 14px; color: var(--ink); background: var(--ivory);
+    transition: border-color var(--transition);
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none; border-color: var(--mint-dark);
+    background: white;
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-success {
+    display: none; background: var(--mint); border-radius: var(--radius-md);
+    padding: 1rem 1.25rem; text-align: center; font-size: 14px;
+    color: var(--ink); margin-top: 1rem;
+  }
+
+  /* ===== ADMIN ===== */
+  .admin-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; }
+  .admin-sidebar {
+    background: white; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 1.5rem;
+    height: fit-content; position: sticky; top: 80px;
+  }
+  .admin-sidebar h4 { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .admin-nav { list-style: none; margin-bottom: 1.5rem; }
+  .admin-nav li a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: var(--radius-sm);
+    font-size: 14px; color: var(--muted); text-decoration: none;
+    transition: var(--transition); cursor: pointer;
+  }
+  .admin-nav li a:hover, .admin-nav li a.active {
+    background: var(--mint); color: var(--ink);
+  }
+  .theme-switcher { margin-top: 1.5rem; border-top: 1px solid rgba(190,231,211,0.3); padding-top: 1.25rem; }
+  .theme-options { display: flex; gap: 8px; flex-wrap: wrap; }
+  .theme-dot {
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+    border: 3px solid transparent; transition: var(--transition);
+  }
+  .theme-dot:hover, .theme-dot.active { border-color: var(--ink); }
+  .admin-main-content { display: flex; flex-direction: column; gap: 1.5rem; }
+  .admin-card {
+    background: white; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 1.75rem;
+  }
+  .admin-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--mint); }
+  .msg-item {
+    padding: 1rem 0; border-bottom: 1px solid rgba(190,231,211,0.25);
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .msg-item:last-child { border-bottom: none; }
+  .msg-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--saffron); display: flex; align-items: center;
+    justify-content: center; font-size: 1rem; flex-shrink: 0;
+  }
+  .msg-from { font-size: 14px; font-weight: 500; }
+  .msg-subject { font-size: 13px; color: var(--muted); }
+  .msg-date { font-size: 12px; color: var(--muted); margin-left: auto; white-space: nowrap; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center; padding: 2.5rem 2rem;
+    font-size: 13px; color: var(--muted);
+    border-top: 1px solid rgba(190,231,211,0.4);
+    margin-top: 2rem;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .hero { grid-template-columns: 1fr; padding: 90px 1.25rem 2rem; gap: 2rem; min-height: unset; }
+    .hero-right { order: -1; }
+    .avatar-ring { width: 200px; height: 200px; }
+    .float-1, .float-2 { display: none; }
+    .hero-stats { flex-wrap: wrap; }
+    .stat-item { min-width: 50%; }
+    .highlights { grid-template-columns: 1fr; padding: 0 1.25rem 3rem; }
+    .section-wrap { padding: 80px 1.25rem 3rem; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .profile-card { position: static; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .admin-wrap { grid-template-columns: 1fr; }
+    .admin-sidebar { position: static; }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.5s ease forwards; }
+  section.active .section-wrap > *, section.active .hero > * { animation: fadeUp 0.4s ease forwards; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--ivory); }
+  ::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#" onclick="showPage('home')">☸ พระปลัดอานนท์</a>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')" class="active" data-page="home">หน้าแรก</a>
+    <a href="#" onclick="showPage('profile')" data-page="profile">ประวัติ</a>
+    <a href="#" onclick="showPage('education')" data-page="education">การศึกษา</a>
+    <a href="#" onclick="showPage('experience')" data-page="experience">ประสบการณ์</a>
+    <a href="#" onclick="showPage('ukmission')" data-page="ukmission">UK Mission</a>
+    <a href="#" onclick="showPage('gallery')" data-page="gallery">แกลเลอรี</a>
+    <a href="#" onclick="showPage('contact')" data-page="contact">ติดต่อ</a>
+    <a href="#" onclick="showPage('admin')" data-page="admin" style="background:var(--saffron);color:var(--ink);">Admin</a>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="เมนู">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showPage('home');closeMobileMenu()">🏠 หน้าแรก</a>
+  <a href="#" onclick="showPage('profile');closeMobileMenu()">👤 ประวัติ</a>
+  <a href="#" onclick="showPage('education');closeMobileMenu()">📚 การศึกษา</a>
+  <a href="#" onclick="showPage('experience');closeMobileMenu()">💼 ประสบการณ์</a>
+  <a href="#" onclick="showPage('ukmission');closeMobileMenu()">🇬🇧 UK Mission</a>
+  <a href="#" onclick="showPage('gallery');closeMobileMenu()">🖼 แกลเลอรี</a>
+  <a href="#" onclick="showPage('contact');closeMobileMenu()">📱 ติดต่อ</a>
+  <a href="#" onclick="showPage('admin');closeMobileMenu()">⚙️ Admin</a>
+</div>
+
+<!-- ======== HOME ======== -->
+<section id="home" class="active">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">☸ สงฆ์แห่งวัดชัยพฤกษมาลาราชวรวิหาร</div>
+      <h1 class="hero-title">พระปลัดอานนท์<br>อติภทฺโท</h1>
+      <p class="hero-pali">Phrapalat Anon Atibhaddo</p>
+      <ul class="hero-positions">
+        <li>รองหัวหน้าโครงการเตรียมบาลีนาคหลวงประโยค 9 กอง นครหลวง 10 สำนัก กัลยาณมิตรสากล</li>
+        <li>เลขาสำนักเรียนวัดชัยพฤกษมาลา</li>
+        <li>ผู้ช่วยเลขาเจ้าคณะเขตตลิ่งชัน</li>
+      </ul>
+      <div class="hero-cta">
+        <a href="#" class="btn btn-primary" onclick="showPage('profile')">ดูประวัติเต็ม</a>
+        <a href="#" class="btn btn-outline" onclick="showPage('contact')">ติดต่อ</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">14</div>
+          <div class="stat-label">พรรษา</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2555</div>
+          <div class="stat-label">อุปสมบท พ.ศ.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">🇬🇧</div>
+          <div class="stat-label">Scotland Mission</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">37</div>
+          <div class="stat-label">ปี</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="avatar-wrap">
+        <div class="avatar-ring">
+          <div class="avatar-img" id="avatarImg">
+            <span class="avatar-emoji">🧘</span>
+            <input type="file" accept="image/*" onchange="updateAvatar(this)" title="อัปโหลดรูปโปรไฟล์">
+          </div>
+        </div>
+        <div class="avatar-float float-1">
+          <div class="float-label">วัดสังกัด</div>
+          <div class="float-val">วัดชัยพฤกษมาลา</div>
+        </div>
+        <div class="avatar-float float-2">
+          <div class="float-label">น.ธ. เอก</div>
+          <div class="float-val">พ.ศ. 2557</div>
+        </div>
+        <div class="avatar-upload-hint">📷 เปลี่ยนรูป</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlights">
+    <div class="hl-card">
+      <div class="hl-icon">🏛️</div>
+      <div class="hl-title">ตำแหน่งปัจจุบัน</div>
+      <div class="hl-content">เลขาสำนักเรียนวัดชัยพฤกษมาลา และผู้ช่วยเลขาเจ้าคณะเขตตลิ่งชัน</div>
+    </div>
+    <div class="hl-card saffron">
+      <div class="hl-icon">📿</div>
+      <div class="hl-title">ความชำนาญ</div>
+      <div class="hl-content">จัดบวชพระ-สามเณร • ประสานงานบวร • อบรมค่ายเยาวชน • สอนปฏิบัติธรรม</div>
+    </div>
+    <div class="hl-card sky">
+      <div class="hl-icon">🌏</div>
+      <div class="hl-title">เป้าหมายชีวิต</div>
+      <div class="hl-content">เผยแผ่พระพุทธศาสนาทั้งในและต่างประเทศ พัฒนาชุมชนด้วยหลักบวร</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© พระปลัดอานนท์ อติภทฺโท | วัดชัยพฤกษมาลาราชวรวิหาร | สร้างด้วย ❤️ เพื่องานเผยแผ่</p>
+  </footer>
+</section>
+
+<!-- ======== PROFILE ======== -->
+<section id="profile">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">ประวัติส่วนตัว</div>
+      <h2>ข้อมูลพระภิกษุ</h2>
+      <p>ข้อมูลส่วนตัวและสถานะทางพระภิกษุสงฆ์</p>
+    </div>
+
+    <div class="profile-grid">
+      <div>
+        <div class="profile-card">
+          <div class="profile-avatar">🧘</div>
+          <div class="profile-name">พระปลัดอานนท์ อติภทฺโท</div>
+          <div class="profile-pali">นามสกุลเดิม: สุรสรณ์</div>
+          <span class="badge-pill">สามัญ · พรรษา 14</span>
+          <ul class="profile-contact">
+            <li>
+              <span class="contact-icon">📞</span>
+              <div>
+                <div style="font-size:11px;color:var(--muted)">โทรศัพท์</div>
+                <span>088-166-9195</span>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon">✉️</span>
+              <div>
+                <div style="font-size:11px;color:var(--muted)">อีเมล</div>
+                <span>fanislike@gmail.com</span>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon">💬</span>
+              <div>
+                <div style="font-size:11px;color:var(--muted)">Line ID</div>
+                <span>Anon_monk</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profile-sections">
+        <div class="info-card">
+          <h3>ข้อมูลทั่วไป</h3>
+          <div class="info-row">
+            <span class="info-key">วันเกิด</span>
+            <span class="info-val">28 พฤษภาคม 2532 (37 ปี)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">สัญชาติ</span>
+            <span class="info-val">ไทย 🇹🇭</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">ศาสนา</span>
+            <span class="info-val">พุทธ ☸</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">ที่อยู่ปัจจุบัน</span>
+            <span class="info-val">วัดพระธรรมกาย</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">สังกัดวัด</span>
+            <span class="info-val">วัดชัยพฤกษมาลาราชวรวิหาร</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">ประเภทวัด</span>
+            <span class="info-val">พระอารามหลวง ชั้นโท ชนิดราชวรวิหาร</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>สถานะทางพระภิกษุ</h3>
+          <div class="info-row">
+            <span class="info-key">บรรพชา</span>
+            <span class="info-val">31 มีนาคม 2555</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">สถานที่บรรพชา</span>
+            <span class="info-val">วัดพระธรรมกาย</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">อุปสมบท</span>
+            <span class="info-val">10 เมษายน 2555</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">สมณศักดิ์</span>
+            <span class="info-val"><span class="badge-pill">พระปลัด</span></span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">พรรษา</span>
+            <span class="info-val">14 พรรษา</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">น.ธ. เอก</span>
+            <span class="info-val">พ.ศ. 2557 (สำนักเรียนวัดยานนาวา)</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>ตำแหน่งหน้าที่</h3>
+          <div class="info-row">
+            <span class="info-key" style="width:200px">รองหัวหน้าโครงการ</span>
+            <span class="info-val" style="font-size:13px">เตรียมบาลีนาคหลวงประโยค 9 กอง นครหลวง 10 สำนัก กัลยาณมิตรสากล</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key" style="width:200px">เลขาสำนักเรียน</span>
+            <span class="info-val">วัดชัยพฤกษมาลา</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key" style="width:200px">ผู้ช่วยเลขา</span>
+            <span class="info-val">เจ้าคณะเขตตลิ่งชัน</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>คติประจำใจ & เป้าหมายชีวิต</h3>
+          <div class="motto-box">
+            "เผยแผ่พระธรรมคำสอนของสมเด็จพระสัมมาสัมพุทธเจ้า เพื่อสันติสุขของโลก"
+          </div>
+          <div style="margin-top:1rem;font-size:14px;color:var(--muted);line-height:1.8">
+            มุ่งมั่นในการอบรมสั่งสอนทั้งพระภิกษุสงฆ์และฆราวาส พัฒนาเครือข่ายบวรในชุมชน และเผยแผ่พระพุทธศาสนาในระดับนานาชาติ
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><p>© พระปลัดอานนท์ อติภทฺโท | วัดชัยพฤกษมาลาราชวรวิหาร</p></footer>
+</section>
+
+<!-- ======== EDUCATION ======== -->
+<section id="education">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Education & Training</div>
+      <h2>การศึกษาและอบรม</h2>
+      <p>เส้นทางการศึกษาทั้งทางโลกและทางธรรม</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;">
+      <div class="info-card">
+        <h3>การศึกษาสามัญ</h3>
+        <div class="edu-timeline">
+          <div class="edu-item">
+            <div class="edu-dot"></div>
+            <div class="edu-year">ระดับประถมศึกษา</div>
+            <div class="edu-title">โรงเรียนวัดธาตุทอง</div>
+            <div class="edu-sub">กรุงเทพมหานคร</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-dot"></div>
+            <div class="edu-year">ระดับมัธยมศึกษา</div>
+            <div class="edu-title">โรงเรียนปทุมคงคา</div>
+            <div class="edu-sub">สายศิลป์-คำนวณ</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-dot" style="background:var(--saffron)"></div>
+            <div class="edu-year">ระดับอุดมศึกษา</div>
+            <div class="edu-title">ปริญญาตรี</div>
+            <div class="edu-sub">สำเร็จการศึกษาแล้ว</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-dot" style="background:var(--sky)"></div>
+            <div class="edu-year">กำลังศึกษา</div>
+            <div class="edu-title">ปริญญาโท</div>
+            <div class="edu-sub">มหาวิทยาลัยจุฬาลงกรณ์</div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>การศึกษาทางธรรม</h3>
+        <div class="edu-timeline">
+          <div class="edu-item">
+            <div class="edu-dot" style="background:var(--lavender)"></div>
+            <div class="edu-year">พ.ศ. 2557</div>
+            <div class="edu-title">นักธรรมเอก (น.ธ. เอก)</div>
+            <div class="edu-sub">สำนักเรียนวัดยานนาวา</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-dot" style="background:var(--coral)"></div>
+            <div class="edu-year">ต่อเนื่อง</div>
+            <div class="edu-title">หลักสูตรเตรียมเจ้าอาวาส</div>
+            <div class="edu-sub">การบริหารจัดการวัด</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1rem;font-weight:600;margin-bottom:1rem;color:var(--ink)">หลักสูตรอบรมพิเศษ</h3>
+    <div class="training-grid">
+      <div class="training-item">📿 อบรมพระนวกะ รุ่น 1–5</div>
+      <div class="training-item">🏛️ หลักสูตรเตรียมเจ้าอาวาส</div>
+      <div class="training-item">🧘 โครงการปฏิบัติธรรมพิเศษ</div>
+      <div class="training-item">☸ อบรมบวชพระ 100,000 รูป รุ่น 6–10</div>
+      <div class="training-item">🌱 บวชสามเณรภาคฤดูร้อน</div>
+      <div class="training-item">🌧️ บวชสามเณรภาคฤดูฝน</div>
+    </div>
+  </div>
+  <footer><p>© พระปลัดอานนท์ อติภทฺโท | วัดชัยพฤกษมาลาราชวรวิหาร</p></footer>
+</section>
+
+<!-- ======== EXPERIENCE ======== -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Experience</div>
+      <h2>ประสบการณ์การทำงาน</h2>
+      <p>งานด้านพระศาสนาและการเผยแผ่ธรรม</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-icon">👨‍🏫</div>
+        <div class="exp-title">พระพี่เลี้ยงโครงการพระนวกะ</div>
+        <div class="exp-desc">ดูแลและอบรมพระนวกะ รุ่น 1 และรุ่น 2 ในช่วงบวชใหม่</div>
+        <span class="exp-tag">อบรม</span>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🏵️</div>
+        <div class="exp-title">พระอาจารย์อบรมบวชพระ 100,000 รูป</div>
+        <div class="exp-desc">พระอาจารย์ประจำโครงการบวชพระ 100,000 รูป รุ่นที่ 6–10</div>
+        <span class="exp-tag">เผยแผ่</span>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🌱</div>
+        <div class="exp-title">พระอาจารย์บวชสามเณร</div>
+        <div class="exp-desc">บวชสามเณรทั้งภาคฤดูร้อนและฤดูฝน ต่อเนื่องทุกปี</div>
+        <span class="exp-tag">เผยแผ่</span>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🌍</div>
+        <div class="exp-title">โครงการสามเณรล้านรูป</div>
+        <div class="exp-desc">ร่วมงานในโครงการสามเณรล้านรูปในฐานะพระอาจารย์ผู้อบรม</div>
+        <span class="exp-tag">โครงการใหญ่</span>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🛕</div>
+        <div class="exp-title">งานจัดบวชพระ-สามเณร</div>
+        <div class="exp-desc">บริหารจัดการโครงการบวชพระและสามเณรในระดับต่าง ๆ</div>
+        <span class="exp-tag">จัดการ</span>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🤝</div>
+        <div class="exp-title">ประสานงานเครือข่ายบวร</div>
+        <div class="exp-desc">ประสานงานเชื่อมโยง บ้าน-วัด-โรงเรียน ในเขตตลิ่งชัน</div>
+        <span class="exp-tag">ชุมชน</span>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">⛺</div>
+        <div class="exp-title">อบรมค่ายเยาวชน</div>
+        <div class="exp-desc">จัดและบรรยายธรรมในค่ายเยาวชนคุณธรรมทั่วประเทศ</div>
+        <span class="exp-tag">เยาวชน</span>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🧘</div>
+        <div class="exp-title">สอนปฏิบัติธรรม</div>
+        <div class="exp-desc">อบรมและสอนการปฏิบัติวิปัสสนากรรมฐานแก่พุทธศาสนิกชน</div>
+        <span class="exp-tag">ปฏิบัติธรรม</span>
+      </div>
+    </div>
+  </div>
+  <footer><p>© พระปลัดอานนท์ อติภทฺโท | วัดชัยพฤกษมาลาราชวรวิหาร</p></footer>
+</section>
+
+<!-- ======== UK MISSION ======== -->
+<section id="ukmission">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">International Mission</div>
+      <h2>UK Mission – Scotland</h2>
+      <p>ภารกิจเผยแผ่พระพุทธศาสนาในสหราชอาณาจักร</p>
+    </div>
+
+    <div class="uk-hero">
+      <h2>🏴󠁧󠁢󠁳󠁣󠁴󠁿 ภารกิจแดนไกล สกอตแลนด์</h2>
+      <p>เดินทางไปปฏิบัติหน้าที่ต่างประเทศครั้งแรก ณ Wat Phra Dhammakaya Scotland สหราชอาณาจักร</p>
+    </div>
+
+    <div class="uk-details" style="margin-bottom:2rem">
+      <div class="uk-detail-card">
+        <div class="uk-detail-label">ประเทศ</div>
+        <div class="uk-detail-val">🇬🇧 United Kingdom</div>
+      </div>
+      <div class="uk-detail-card">
+        <div class="uk-detail-label">สถานที่</div>
+        <div class="uk-detail-val">Wat Phra Dhammakaya Scotland</div>
+      </div>
+      <div class="uk-detail-card">
+        <div class="uk-detail-label">ระยะเวลา</div>
+        <div class="uk-detail-val">1 ปี</div>
+      </div>
+      <div class="uk-detail-card">
+        <div class="uk-detail-label">ลักษณะภารกิจ</div>
+        <div class="uk-detail-val">ปฏิบัติหน้าที่ต่างประเทศครั้งแรก</div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>วัตถุประสงค์และการมอบหมายงาน</h3>
+      <div class="info-row">
+        <span class="info-key">วัตถุประสงค์</span>
+        <span class="info-val">เผยแผ่พระพุทธศาสนาในสหราชอาณาจักร ดูแลพุทธศาสนิกชนชาวไทยและต่างชาติ</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">การมอบหมายงาน</span>
+        <span class="info-val">มอบหมายพระเพื่อนรับผิดชอบงานในประเทศไทยแทนในช่วงที่เดินทางไปปฏิบัติหน้าที่</span>
+      </div>
+    </div>
+  </div>
+  <footer><p>© พระปลัดอานนท์ อติภทฺโท | วัดชัยพฤกษมาลาราชวรวิหาร</p></footer>
+</section>
+
+<!-- ======== GALLERY ======== -->
+<section id="gallery">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Gallery</div>
+      <h2>แกลเลอรีภาพ</h2>
+      <p>ภาพกิจกรรมและภารกิจต่าง ๆ</p>
+    </div>
+
+    <div class="upload-zone" id="uploadZone" ondragover="dragOver(event)" ondrop="dropFile(event)" ondragleave="dragLeave(event)">
+      <input type="file" accept="image/*" multiple onchange="uploadFiles(this)" title="อัปโหลดรูปภาพ">
+      <div class="upload-icon">📤</div>
+      <div class="upload-text">ลากภาพมาวางที่นี่ หรือคลิกเพื่อเลือก</div>
+      <div class="upload-sub">รองรับ JPG, PNG, WEBP · ขนาดสูงสุด 10MB ต่อไฟล์</div>
+    </div>
+
+    <div class="gallery-toolbar">
+      <button class="filter-btn active" onclick="filterGallery('all',this)">ทั้งหมด</button>
+      <button class="filter-btn" onclick="filterGallery('อบรม',this)">กิจกรรมอบรม</button>
+      <button class="filter-btn" onclick="filterGallery('บวช',this)">งานบวชพระ-สามเณร</button>
+      <button class="filter-btn" onclick="filterGallery('ecard',this)">E-Card และสื่อภาพ</button>
+      <button class="filter-btn" onclick="filterGallery('scotland',this)">ภารกิจ Scotland</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item" data-cat="อบรม">
+        <div class="gallery-thumb">🏛️</div>
+        <div class="gallery-info">
+          <div class="gallery-name">อบรมพระนวกะ รุ่น 5</div>
+          <div class="gallery-cat">กิจกรรมอบรม</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-cat="บวช">
+        <div class="gallery-thumb">🙏</div>
+        <div class="gallery-info">
+          <div class="gallery-name">งานบวชพระ 100,000 รูป</div>
+          <div class="gallery-cat">งานบวชพระ-สามเณร</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-cat="scotland">
+        <div class="gallery-thumb">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Wat Phra Dhammakaya Scotland</div>
+          <div class="gallery-cat">ภารกิจ Scotland</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-cat="ecard">
+        <div class="gallery-thumb">🎴</div>
+        <div class="gallery-info">
+          <div class="gallery-name">E-Card เทศกาลออกพรรษา</div>
+          <div class="gallery-cat">E-Card และสื่อภาพ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><p>© พระปลัดอานนท์ อติภทฺโท | วัดชัยพฤกษมาลาราชวรวิหาร</p></footer>
+</section>
+
+<!-- ======== CONTACT ======== -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Contact</div>
+      <h2>ติดต่อ</h2>
+      <p>สอบถามข้อมูลหรือนิมนต์งานได้ตามช่องทางด้านล่าง</p>
+    </div>
+
+    <div class="contact-layout">
+      <div>
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:1.25rem">ช่องทางติดต่อสาธารณะ</h3>
+        <ul class="contact-info-list">
+          <li>
+            <div class="ci-icon mint">📞</div>
+            <div>
+              <div class="ci-label">โทรศัพท์</div>
+              <div class="ci-val">088-166-9195</div>
+            </div>
+          </li>
+          <li>
+            <div class="ci-icon saffron">✉️</div>
+            <div>
+              <div class="ci-label">อีเมล</div>
+              <div class="ci-val">fanislike@gmail.com</div>
+            </div>
+          </li>
+          <li>
+            <div class="ci-icon sky">💬</div>
+            <div>
+              <div class="ci-label">Line ID</div>
+              <div class="ci-val">Anon_monk</div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="info-card" style="margin-top:1.5rem">
+          <h3>ที่อยู่วัด</h3>
+          <p style="font-size:14px;color:var(--muted);line-height:1.8">
+            วัดชัยพฤกษมาลาราชวรวิหาร<br>
+            พระอารามหลวง ชั้นโท ชนิดราชวรวิหาร<br>
+            เขตตลิ่งชัน กรุงเทพมหานคร
+          </p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>ส่งข้อความ</h3>
+        <div class="form-group">
+          <label>ชื่อ-สกุล *</label>
+          <input type="text" id="cName" placeholder="ชื่อ-สกุลของท่าน">
+        </div>
+        <div class="form-group">
+          <label>อีเมล หรือ เบอร์โทรศัพท์ *</label>
+          <input type="text" id="cContact" placeholder="ช่องทางติดต่อกลับ">
+        </div>
+        <div class="form-group">
+          <label>หัวข้อ</label>
+          <select id="cTopic">
+            <option value="">-- เลือกหัวข้อ --</option>
+            <option>นิมนต์งานบวช</option>
+            <option>ขอคำปรึกษาธรรม</option>
+            <option>ประสานงานเครือข่ายบวร</option>
+            <option>ค่ายเยาวชน</option>
+            <option>อื่น ๆ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ข้อความ *</label>
+          <textarea id="cMsg" placeholder="รายละเอียดที่ต้องการสื่อสาร..."></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="submitContact()" style="width:100%;justify-content:center">ส่งข้อความ</button>
+        <div class="form-success" id="formSuccess">✅ ได้รับข้อความแล้ว จะติดต่อกลับโดยเร็ว อนุโมทนา 🙏</div>
+      </div>
+    </div>
+  </div>
+  <footer><p>© พระปลัดอานนท์ อติภทฺโท | วัดชัยพฤกษมาลาราชวรวิหาร</p></footer>
+</section>
+
+<!-- ======== ADMIN ======== -->
+<section id="admin">
+  <div class="section-wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Admin Dashboard</div>
+      <h2>จัดการเนื้อหา</h2>
+    </div>
+
+    <div class="admin-wrap">
+      <div class="admin-sidebar">
+        <h4>เมนูจัดการ</h4>
+        <ul class="admin-nav">
+          <li><a href="#" onclick="showAdminTab('messages')" class="active" id="adminTab-messages">📬 ข้อความ</a></li>
+          <li><a href="#" onclick="showAdminTab('gallery-mgmt')" id="adminTab-gallery-mgmt">🖼 แกลเลอรี</a></li>
+          <li><a href="#" onclick="showAdminTab('profile-edit')" id="adminTab-profile-edit">👤 แก้ไขโปรไฟล์</a></li>
+        </ul>
+        <div class="theme-switcher">
+          <h4>ธีมสี</h4>
+          <div class="theme-options">
+            <div class="theme-dot active" style="background:var(--mint)" onclick="setTheme('mint',this)" title="Mint"></div>
+            <div class="theme-dot" style="background:var(--saffron)" onclick="setTheme('saffron',this)" title="Saffron"></div>
+            <div class="theme-dot" style="background:var(--sky)" onclick="setTheme('sky',this)" title="Sky"></div>
+            <div class="theme-dot" style="background:var(--lavender)" onclick="setTheme('lavender',this)" title="Lavender"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-main-content">
+        <!-- Messages tab -->
+        <div id="adminContent-messages" class="admin-card">
+          <h3>📬 ข้อความที่ได้รับ</h3>
+          <div id="adminMessages">
+            <div style="text-align:center;padding:2rem;color:var(--muted);font-size:14px">
+              ยังไม่มีข้อความ ข้อความที่ส่งผ่านหน้าติดต่อจะแสดงที่นี่
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery management tab (hidden by default) -->
+        <div id="adminContent-gallery-mgmt" class="admin-card" style="display:none">
+          <h3>🖼 จัดการแกลเลอรี</h3>
+          <p style="font-size:14px;color:var(--muted);margin-bottom:1rem">จำนวนภาพที่มีอยู่: <strong id="galleryCount">4</strong> ภาพ</p>
+          <button class="btn btn-primary" onclick="showPage('gallery')" style="font-size:13px;padding:9px 20px">
+            ไปที่แกลเลอรีเพื่ออัปโหลด
+          </button>
+        </div>
+
+        <!-- Profile edit tab (hidden by default) -->
+        <div id="adminContent-profile-edit" class="admin-card" style="display:none">
+          <h3>👤 แก้ไขโปรไฟล์</h3>
+          <div class="form-group">
+            <label>คติประจำใจ</label>
+            <textarea style="min-height:80px" placeholder="แก้ไขคติประจำใจ...">"เผยแผ่พระธรรมคำสอนของสมเด็จพระสัมมาสัมพุทธเจ้า เพื่อสันติสุขของโลก"</textarea>
+          </div>
+          <div class="form-group">
+            <label>เป้าหมายชีวิต</label>
+            <textarea placeholder="แก้ไขเป้าหมายชีวิต...">มุ่งมั่นในการอบรมสั่งสอนทั้งพระภิกษุสงฆ์และฆราวาส</textarea>
+          </div>
+          <button class="btn btn-primary" onclick="alert('บันทึกสำเร็จ ✅')" style="font-size:13px;padding:9px 20px">บันทึกการเปลี่ยนแปลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><p>© พระปลัดอานนท์ อติภทฺโท | Admin</p></footer>
+</section>
+
+<script>
+  /* ===== NAVIGATION ===== */
+  function showPage(page) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+    const link = document.querySelector(`.nav-links a[data-page="${page}"]`);
+    if (link) link.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  /* ===== AVATAR UPLOAD ===== */
+  function updateAvatar(input) {
+    if (!input.files || !input.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = document.getElementById('avatarImg');
+      img.style.backgroundImage = `url(${e.target.result})`;
+      img.style.backgroundSize = 'cover';
+      img.style.backgroundPosition = 'center';
+      img.querySelector('.avatar-emoji').style.display = 'none';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+
+  /* ===== GALLERY ===== */
+  let galleryItems = [];
+
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+    document.getElementById('uploadZone').style.borderColor = 'var(--mint-dark)';
+    document.getElementById('uploadZone').style.background = 'rgba(190,231,211,0.1)';
+  }
+  function dragLeave(e) {
+    document.getElementById('uploadZone').style.borderColor = '';
+    document.getElementById('uploadZone').style.background = '';
+  }
+  function dropFile(e) {
+    e.preventDefault();
+    dragLeave(e);
+    const files = e.dataTransfer.files;
+    processFiles(files);
+  }
+  function uploadFiles(input) {
+    processFiles(input.files);
+  }
+
+  function processFiles(files) {
+    const grid = document.getElementById('galleryGrid');
+    Array.from(files).forEach(file => {
+      if (!file.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.dataset.cat = 'อบรม';
+        item.innerHTML = `
+          <img class="gallery-thumb" src="${e.target.result}" alt="${file.name}" style="object-fit:cover">
+          <div class="gallery-info">
+            <div class="gallery-name">${file.name.replace(/\.[^/.]+$/, '')}</div>
+            <div class="gallery-cat">กิจกรรมอบรม</div>
+          </div>`;
+        grid.appendChild(item);
+        document.getElementById('galleryCount').textContent = document.querySelectorAll('.gallery-item').length;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* ===== CONTACT FORM ===== */
+  const messages = [];
+  function submitContact() {
+    const name = document.getElementById('cName').value.trim();
+    const contact = document.getElementById('cContact').value.trim();
+    const msg = document.getElementById('cMsg').value.trim();
+    if (!name || !contact || !msg) {
+      alert('กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, ช่องทางติดต่อ, ข้อความ)');
+      return;
+    }
+    const entry = {
+      name, contact, topic: document.getElementById('cTopic').value,
+      msg, date: new Date().toLocaleDateString('th-TH', { day:'numeric', month:'short', year:'numeric' })
+    };
+    messages.push(entry);
+
+    // Update admin messages
+    const adminMsgEl = document.getElementById('adminMessages');
+    adminMsgEl.innerHTML = messages.map(m => `
+      <div class="msg-item">
+        <div class="msg-avatar">👤</div>
+        <div>
+          <div class="msg-from">${m.name}</div>
+          <div class="msg-subject">${m.topic || 'ข้อความทั่วไป'} · ${m.contact}</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px">${m.msg}</div>
+        </div>
+        <div class="msg-date">${m.date}</div>
+      </div>`).join('');
+
+    // Clear & show success
+    ['cName','cContact','cMsg'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('cTopic').selectedIndex = 0;
+    const suc = document.getElementById('formSuccess');
+    suc.style.display = 'block';
+    setTimeout(() => suc.style.display = 'none', 4000);
+  }
+
+  /* ===== ADMIN TABS ===== */
+  function showAdminTab(tab) {
+    document.querySelectorAll('[id^="adminContent-"]').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('[id^="adminTab-"]').forEach(el => el.classList.remove('active'));
+    document.getElementById(`adminContent-${tab}`).style.display = '';
+    document.getElementById(`adminTab-${tab}`).classList.add('active');
+  }
+
+  /* ===== THEME SWITCHER ===== */
+  const themes = {
+    mint:     { accent: '#BEE7D3', dark: '#6abf9a' },
+    saffron:  { accent: '#F6D78B', dark: '#d4a017' },
+    sky:      { accent: '#B8DDF2', dark: '#5aaed4' },
+    lavender: { accent: '#D9CDF7', dark: '#9b84e0' },
+  };
+  function setTheme(name, dot) {
+    const t = themes[name];
+    document.documentElement.style.setProperty('--mint', t.accent);
+    document.documentElement.style.setProperty('--mint-dark', t.dark);
+    document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+    dot.classList.add('active');
+  }
+</script>
+</body>
+</html>
